@@ -54,7 +54,7 @@ class IdentInfo(NamedTuple):
             line = line[:first_slash]
         else:
             line = line+'$'
-        return '{}\t{}\t/^{}$'.format(self.name, fn, line)
+        return '{}\t{}\t/^{}'.format(self.name, fn, line)
 
 class Identer:
     tags  : List[str]
@@ -313,6 +313,7 @@ def write_vim(funcs:List[str], enums:List[str], types:List[str], globs:List[str]
     macros_ = set(macros)
     macros_.difference_update([
         'bool', 'true', 'false', 'YES', 'NO', # technically macros, but vim already recognizes them.
+        'warn_unused', 'force_inline',
         ])
     macros_.difference_update(funcs)
     macros_.difference_update(enums)

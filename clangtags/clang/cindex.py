@@ -1395,6 +1395,7 @@ class TypeKind(BaseEnumeration, table=enumerations.TYPE_KINDS):
     UINT128: TypeKind
     FUNCTIONPROTO: TypeKind
     INVALID: TypeKind
+    POITNER: TypeKind
     @property
     def spelling(self) -> str:
         """
@@ -3484,7 +3485,7 @@ class Config:
         elif name == 'Windows':
             file = 'libclang.dll'
         else:
-            file = 'libclang-10.so.1'
+            file = 'libclang.so.1'
 
         if Config.library_path:
             file = Config.library_path + '/' + file

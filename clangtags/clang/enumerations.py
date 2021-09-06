@@ -830,7 +830,7 @@ TYPE_KINDS = [
     ('FLOAT128', 30),
     ('HALF', 31),
     ('COMPLEX', 100),
-    ('ctypes.POINTER', 101),
+    ('POINTER', 101),
     ('BLOCKPOINTER', 102),
     ('LVALUEREFERENCE', 103),
     ('RVALUEREFERENCE', 104),
