@@ -1120,7 +1120,7 @@ class Cursor(ctypes.Structure):
         return self._enum_type
 
     @property
-    def enum_value(self) -> ctypes.c_ulonglong:
+    def enum_value(self) -> int:
         """
         Return the value of an enum constant.
         """
@@ -1533,7 +1533,7 @@ class Type(ctypes.Structure):
     def get_template_argument_type(self, num):
         return conf.lib.clang_Type_getTemplateArgumentAsType(self, num)
 
-    def get_canonical(self):
+    def get_canonical(self) -> 'Type':
         """
         Return the canonical type for a Type.
 
@@ -1598,7 +1598,7 @@ class Type(ctypes.Structure):
         """
         return conf.lib.clang_getPointeeType(self)
 
-    def get_declaration(self):
+    def get_declaration(self) -> 'Cursor':
         """
         Return the cursor for the declaration of the given type.
         """
@@ -1610,13 +1610,13 @@ class Type(ctypes.Structure):
         """
         return conf.lib.clang_getResultType(self)
 
-    def get_array_element_type(self):
+    def get_array_element_type(self) -> 'Type':
         """
         Retrieve the type of the elements of the array type.
         """
         return conf.lib.clang_getArrayElementType(self)
 
-    def get_array_size(self):
+    def get_array_size(self) -> int:
         """
         Retrieve the size of the constant array.
         """
@@ -1634,19 +1634,19 @@ class Type(ctypes.Structure):
         """
         return conf.lib.clang_Type_getNamedType(self)
 
-    def get_align(self):
+    def get_align(self) -> int:
         """
         Retrieve the alignment of the record.
         """
         return conf.lib.clang_Type_getAlignOf(self)
 
-    def get_size(self):
+    def get_size(self) -> int:
         """
         Retrieve the size of the record.
         """
         return conf.lib.clang_Type_getSizeOf(self)
 
-    def get_offset(self, fieldname):
+    def get_offset(self, fieldname) -> int:
         """
         Retrieve the offset of a field in the record.
         This is in bits, not bytes.
@@ -1660,7 +1660,7 @@ class Type(ctypes.Structure):
         return RefQualifierKind.from_id(
                 conf.lib.clang_Type_getCXXRefQualifier(self))
 
-    def get_fields(self):
+    def get_fields(self) -> Iterator:
         """
         Return an iterator for accessing the fields of this type.
         """
@@ -2033,7 +2033,7 @@ class TranslationUnit(ClangObject):
     PARSE_INCLUDE_BRIEF_COMMENTS_IN_CODE_COMPLETION = 128
 
     @classmethod
-    def from_source(cls, filename, args=None, unsaved_files=None, options=0, index=None):
+    def from_source(cls, filename:str, args:Optional[List[str]]=None, unsaved_files:Optional[list]=None, options=0, index:Optional['Index']=None) -> 'TranslationUnit':
         """
         Create a TranslationUnit by parsing source.
 
