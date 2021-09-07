@@ -1395,7 +1395,9 @@ class TypeKind(BaseEnumeration, table=enumerations.TYPE_KINDS):
     UINT128: TypeKind
     FUNCTIONPROTO: TypeKind
     INVALID: TypeKind
-    POITNER: TypeKind
+    POINTER: TypeKind
+    CONSTANTARRAY: TypeKind
+    RECORD: TypeKind
     @property
     def spelling(self) -> str:
         """
