@@ -202,6 +202,10 @@ def good_tag(cursor) -> bool:
     spelling = cursor.spelling
     if not spelling:
         return False
+    if 'unnamed ' in spelling:
+        return False
+    if 'anonymous ' in spelling:
+        return False
     if not is_definition(cursor):
         return False
     if cursor.kind == CursorKind.TYPEDEF_DECL:
